@@ -42,8 +42,9 @@ header ul li a{
 /*
 文章
 */
-article,section,aside{
-	margin:8rem 5rem 0;
+
+article,section{
+	margin:8rem 25rem 0 5rem;
 	padding: 3rem;
 	background-color: #fff;
 }
@@ -57,20 +58,24 @@ article  p{
 article ul li{
 	list-style: none;
 }
+article img{
+	width:10rem;  
+}
 /*
 图片
 */
 figure{
 	border:1px solid #ccc;
-	width:20rem;
+	width:8rem;
 	padding: 3rem;
 	margin:2rem;
+	display: inline-block;
 }
 figure figcaption{
 	text-align: center;
 }
 figure img{
-	width:20rem;
+	width:10rem;
 	display: block;
 	margin:2rem auto;
 }
@@ -100,10 +105,20 @@ tr:last-child{
 /*
 侧栏
 */
+aside {
+	position: absolute;
+	top:8rem;
+	right: 2rem;
+	width:20rem;
+	background-color: white;
+	padding: 0.5rem;
+	z-index:-1;
+}
 aside h1{
 	border-left:3px #ccc solid;
 	line-height: 2rem;
-	padding-left: 0.5rem;
+	padding-left: 0.8rem;
+	font-size:20px;
 }
 aside form{
 	width:100%;
