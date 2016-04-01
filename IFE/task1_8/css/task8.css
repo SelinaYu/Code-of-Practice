@@ -1,0 +1,80 @@
+html,body{
+	margin:0;
+	padding:0;
+}
+.container{
+	box-sizing: border-box;
+	padding:10px;
+}
+/*表示所有css以col开始的都使用这个规则*/
+[class*='col-']{
+	box-sizing: border-box;
+	border:1px solid #999;
+	background-color: #eee;
+	float: left;
+	height:50px;
+	margin:10px;
+	line-height: 50px;
+	text-align: center;
+}
+.row:before, 
+.row:after {
+    content:"";
+    display:table;
+    clear:both;
+}
+
+@media(min-width:769px){
+	.col-md-1{
+		width: calc(8.333% - 20px);
+	-moz-width:calc(8.333% - 20px);
+	-webkit-width:calc(8.333% - 20px);
+	}
+	.col-md-2{
+		width:calc(16.666% - 20px);
+		-moz-width:calc(16.666% - 20px);
+		-webkit-width:calc(16.666% - 20px);
+	}
+	.col-md-3{
+		width:calc(25% - 20px);
+		-moz-width:calc(25% - 20px);
+		-webkit-width:calc(25% - 20px);
+	}
+	.col-md-4{
+		width:calc(33.333% - 20px);
+		-moz-width:calc(33.333% - 20px);
+		-webkit-width:calc(33.333% - 20px);
+	}
+	.col-md-6{
+		width:calc(50% - 20px);
+		-moz-width:calc(50% - 20px);
+		-webkit-width:calc(50% - 20px);
+	}
+}
+@media(max-width: 768px){
+	.col-sm-2{
+		width:calc(16.666% - 20px);
+		-moz-width:calc(16.666% - 20px);
+		-webkit-width:calc(16.666% - 20px);
+	}
+	.col-sm-3{
+		width:calc(25% - 20px);
+		-moz-width:calc(25% - 20px);
+		-webkit-width:calc(25% - 20px);
+	}
+	.col-sm-6{
+		width:calc(50% - 20px);
+		-moz-width:calc(50% - 20px);
+		-webkit-width:calc(50% - 20px);
+	}
+	.col-sm-8{
+		width:calc(66.666% - 20px);
+		-moz-width:calc(66.666% - 20px);
+		-webkit-width:calc(66.666% - 20px);
+	}
+	.col-sm-12{
+		width:calc(100% - 20px);
+		-moz-width:calc(100% - 20px);
+		-webkit-width:calc(100% - 20px);
+	}
+}
