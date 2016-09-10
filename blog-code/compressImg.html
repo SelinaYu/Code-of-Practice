@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>canvas压缩上传代码</title>
+</head>
+<body>
+	<input type="file" id="files" name="pic" accept="image/*"/>
+	<!-- 当压缩比较小的图片的时候，可能会比原图片大一点点 -->
+	<script>
+	    var body = document.getElementsByTagName('body')[0];
+		var filesDom = document.getElementById("files");
+		
+		filesDom.onchange = function(){
+		   var files = filesDom.files[0],
+		       image = new Image(),//原始图片
+	    	   image2 = new Image(),//压缩图片
+	    	   thumbW ,//进行尺寸压缩的宽和高
+	    	   thumbH ,		       
+	    	   blob,
+	    	   size,
+	    	   quality = 0.75,//质量压缩
+		       reader = new FileReader(),
+		       canvas = document.createElement('canvas'),
+		       context = canvas.getContext('2d'),
+		       url;//FileReader读取的url
+		       
+		       console.log(files.size/1024);
+		       reader.onload = function(e){
+		          url = e.target.result; 
+		          image.onload = function(){
+				       var Obj = sizeCompress(image);//这个方法返回的是尺寸压缩的宽和高
+				       thumbH= Obj.thumbH;
+					   thumbW = Obj.thumbW;
+					   canvas.width = thumbW;
+					   canvas.height = thumbH;
+					   
+					   context.drawImage(image,0,0,thumbW,thumbH);
+					   dataUrl = canvas.toDataURL("image/jpeg",0.75);//质量压缩默认值为0.92
+				      
+				     blob = dataURLtoBlob(dataUrl);
+				     console.log(blob.size / 1024)
+				     while(blob.size >200*1024){//当图片大小>200KB
+				            thumbH = thumbH / 1.3;
+				            thumbW = thumbW / 1.3;
+				            quality -= 0.06;
+				            canvas.width = thumbW;
+				            canvas.height = thumbH;
+				            context.drawImage(image,0,0,thumbW,thumbH);
+				            dataUrl = canvas.toDataURL("image/jpeg",quality);
+				            blob = dataURLtoBlob(dataUrl);
+				            size = blob.size;
+				            console.log(size/1024);
+				     }
+				     image2.src = dataUrl;
+				     body.appendChild(image);
+				     body.appendChild(image2);
+		          }
+		          image.src = url;
+		       }
+		       reader.readAsDataURL(files);
+		}	
+//这个函数是把Base64编码形式的图片数据转换成Blob对象
+function dataURLtoBlob(dataURL) {
+  var binary = atob(dataURL.split(',')[1]);
+  var array = [];
+  for(var i = 0; i < binary.length; i++) {
+      array.push(binary.charCodeAt(i));
+  }
+  return new Blob([new Uint8Array(array)], {type: 'image/jpeg'});
+}		
+//按项目要求进行尺寸压缩
+function sizeCompress(image){
+
+       var width = image.width,
+           height = image.height,
+           thumbW = width,
+           thumbH = height,
+           multiple;
+        //若宽大于高，则互换width和height方便进行计算,thumbW、thumbH不变，
+        //保留文件的真实处理
+        //保证width/height <= 1
+        if(thumbH < thumbW){
+        	height = thumbW;
+        	width = thumbH;
+        }
+        //scale压缩比例
+        var scale = width/height;
+
+        if(scale > 0.5625 && scale <= 1){//介于方图和9/16
+         
+
+             //分级计算压缩后的大小和图片尺寸
+             if(height < 1664){
+                thumbW = width;
+               thumbH = height;
+            }else if(height >= 1664&&height<4990){
+            	//长宽均减半
+            	thumbW = width/2;
+            	thumbH = height/2;
+            }else if(height >= 4990 && height < 10240){
+            	//长宽均为原图的1/4
+            	thumbW = width/4;
+            	thumbH = height/4;
+            }else{
+            	//超过10240的图 根据高为1280来计算压缩
+            	multiple = height / 1280 == 0? 1 : height / 1280;
+                thumbW = width / multiple;
+                thumbH = height / multiple;       	  
+            }
+
+        }else if( scale > 0.5 && scale <= 0.5625){//介于9/16和1/2，小长图
+                multiple = height/1280 == 0 ? 1: height / 1280;
+                thumbW = width / multiple;
+                thumbH = height / multiple;          
+        }else{//大于1/2的图，即长图或者宽图
+        	//根据高为1280来计算压缩比例
+        	multiple = Math.ceil(width/1280.0);
+        	thumbW = width / multiple;
+        	thumbH = height / multiple;
+        }
+        return {
+        	thumbW:thumbW,
+        	thumbH:thumbH
+        }
+}	
+	</script>
+</body>
+</html>
