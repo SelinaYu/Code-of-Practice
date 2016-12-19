@@ -8,6 +8,9 @@ const config = {
   user: 'sa',
   password: 'root',
   server: 'localhost',
-  database: 'Web_Bookstore'
+  database: 'Web_Bookstore',
+  options:{
+  	encrypt:true
+  }
 }
 export default config;

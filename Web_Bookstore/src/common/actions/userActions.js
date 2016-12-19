@@ -16,3 +16,5 @@ export const authError = createAction('AUTH_ERROR');
 export const startLogout = createAction('START_LOGOUT', WebAPI.logout);
 export const checkAuth = createAction('CHECK_AUTH');
 export const setUser = createAction('SET_USER');
+
+export const addUser = createAction('ADD_USER',WebAPI.addUser);

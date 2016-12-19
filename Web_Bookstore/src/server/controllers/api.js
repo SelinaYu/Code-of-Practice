@@ -1,6 +1,7 @@
 import express from 'express';
 import sql from 'mssql';
 import config from '../config';
+import uuid from 'uuid';
 
 const app = express();
 const apiRoutes = express.Router();
@@ -39,7 +40,42 @@ apiRoutes.get('/books',(req,res) => {
     })
   })
 })
-apiRoutes.get('/BookImg',(req,res)=>{
-  es.status(200).json('')
+apiRoutes.post('/register',(req,res) => {
+  const accountName = req.body.accountName;
+  const accountPsd = req.body.accountPsd;
+  const accountSex = req.body.accountSex;
+  const accountTele = req.body.accountTele;
+  const accountRight = 3;//3表示用户
+  console.log(accountSex)
+  sql.connect(config,function(err){
+   const request = new sql.Request();
+     // request.on('info',function(info){
+     //  console.dir(info);
+     // });
+     // request.query("insert into Account values('寒冰',123,'女',3,123456777)",function(err,recordset){
+     //  if(err) {
+     //    console.log(err)
+     //    res.status(500).json({success:false,message:'保存用户信息失败！'})
+     //  }else{
+     //    console.log(recordset)
+     //   res.status(200).json({success:true})
+     //  }
+     // })
+     request
+    .input('accountName',sql.NVarChar(50),accountName)
+    .input('accountPsd',sql.VarChar(20),accountPsd)
+    .input('accountRight',sql.Char(1),accountRight)
+    .input('accountSex',sql.NVarChar(2),accountSex)
+    .input('accountTele',sql.VarChar(16),accountTele)
+    .execute('addUser',function(err,recordsets,returnValue){
+      console.log(recordsets);
+      console.log(returnValue);
+      if(err) {
+        console.log(err)
+        res.status(500).json({success:false,message:'保存用户信息失败！'})
+      };
+      res.status(200).json({success:true})
+    })
+  })
 })
 export default apiRoutes;

@@ -5,8 +5,8 @@ const HomePage = ({
 }) => (
   <div>
    {
-   	books.map((book,bookID)=>(
-      <BookBoxContainer book = {book} key={bookID} />
+   	books.map((book,index)=>(
+      <BookBoxContainer book = {book} key={index} />
    	)).toJS()
    }
 

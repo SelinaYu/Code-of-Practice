@@ -1,13 +1,13 @@
-// import { handleActions } from 'redux-actions';
-// import { BookState }  from '../../constants/models';
+import { handleActions } from 'redux-actions';
+import { BookState }  from '../../constants/models';
 
-// import {
-//   TAKE_TO_CAR
-// } from '../../constants/actionTypes';
+import {
+  GET_BOOKS
+} from '../../constants/actionTypes';
 
-// const bookReducers = handleActions({
-// 	TAKE_TO_CAR:(state,{payload}) => (
-//       state.set('books',payload.books)
-// 	)
-// },BookState);
-// export default bookReducers;
+const bookReducers = handleActions({
+	GET_BOOKS:(state,{payload}) => (
+      state.set('books',payload.books)
+	)
+},BookState);
+export default bookReducers;

@@ -6,6 +6,8 @@ export const UiState = Immutable.fromJS({
 export const UserState = Immutable.fromJS({
 	username:'',
 	password:'',
+	tel:'',
+	sex:'',
 	isAuthorized:false
 });
 
@@ -20,4 +22,5 @@ export const BookState = Immutable.fromJS({
 		bookNo:'',
 		bookPrice:''
   }
-})
+});
+

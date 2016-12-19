@@ -62,11 +62,14 @@ const handleRender = (req,res) => {
 			// }
 			const initialState = fromJS({
                user:{
-               	isAuthorized:isAuthorized,
-               	isEdit:false
+                username:'',
+                password:'',
+                tel:'',
+                sex:'',
+                isAuthorized:false
                },
                book:{
-                books:response[0].data,
+                  books:response[0].data,
                   book:{
                     bookID:'',
                     bookName:'',

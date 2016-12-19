@@ -15,16 +15,21 @@ const AppBar = ({
       <Navbar.Toggle />
     </Navbar.Header>
     <Navbar.Collapse>
-    {
-    isAuthorized === false ?     
-      (<Nav pullRight>
-            <LinkContainer to={{ pathname: '/login' }}><NavItem eventKey={2} href="#">登入</NavItem></LinkContainer>
-      	</Nav>)
-      :
-      (<Nav pullRight>
-              <NavItem eventKey={2} href="onLogout">登出</NavItem>
-        </Nav>)
-     }
+      {
+        isAuthorized === false ?
+        (
+          <Nav pullRight>
+            <NavItem eventKey={2} href="login">登录</NavItem>
+            <NavItem eventKey={1} href="register">注册</NavItem>
+          </Nav>
+        ) :
+        (
+          <Nav pullRight>
+            <NavItem eventKey={2} onClick={onLogout} href="#">退出</NavItem>
+          </Nav>
+        )        
+      }
+
     </Navbar.Collapse>
   </Navbar>
 )

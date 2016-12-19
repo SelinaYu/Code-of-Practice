@@ -6,5 +6,6 @@ export default connect(
   (state) => ({
   	books:state.getIn(['book','books'])
   }),
-  (dispatch) => ({})
+  (dispatch) => ({
+  })
 )(HomePage);
