@@ -5,32 +5,31 @@ import uuid from 'uuid';
 import {
 	authComplete,
 	authError,
-	hideSpinner,
-	completeLogout
+	completeLogout,
+	setUser
 } from '../actions';
 
 export default {
-	// login: (dispatch,username,password) => {
-	// 	axios.post('/api/login',{
-	// 		username:username,
-	// 		password:password
-	// 	})
-	// 	.then((response) => {
-	// 		if(response.data.success == false){
-	// 			dispatch(authError);
-	// 			dispatch(hideSpinner);
-	// 			alert(response.data.message);
-	// 			window.location.reload();
-	// 		}else{
-	// 		    dispatch(authComplete());
-	// 		    dispatch(hideSpinner());
-	// 		    browserHistory.push('/');	
-	// 		}
-	// 	})
-	// 	.catch(function(error){
-	// 		dispatch(authError)
-	// 	});
-	// },
+	login: (dispatch,username,password) => {
+		axios.post('/api/login',{
+			username:username,
+			password:password
+		})
+		.then((response) => {
+			if(response.data.success == false){
+				dispatch(authError);
+				alert(response.data.message);
+				window.location.reload();
+			}else{
+			    dispatch(authComplete());
+                setUser('accountID',response.data.userId)
+			    browserHistory.push('/');	
+			}
+		})
+		.catch(function(error){
+			dispatch(authError)
+		});
+	},
 	getBooks:()=>{
 		axios.get('/api/books')
 		.then((response)=>{
@@ -49,10 +48,22 @@ export default {
 				browserHistory.push('/register')
 			}else{
 				// window.location.reload();
-				alert('成功')
-				browserHistory.push('/register')
+				browserHistory.push('/login')
 			}
 		}).
 		catch(function(error){});
+	},
+	takeToCar:(dispatch,bookID,isAuthorized,accountID) => {
+		console.log(isAuthorized)
+	  if(isAuthorized == false){
+	  	browserHistory.push('/login')
+	  }else{
+        //获取用户的购物车ID
+        //判断是否存在购物车中
+        //不存在则插入商品
+        //插入详细购物车清单
+        //商品数量加1  	
+	  }
+
 	}
 }

@@ -6,5 +6,5 @@ import {
 	GET_BOOKS
 } from '../constants/actionTypes';
 
-export const takeToCar = createAction('TAKE_TO_CAR');
+export const takeToCar = createAction('TAKE_TO_CAR',WebAPI.takeToCar);
 export const getBooks = createAction('GET_BOOKS',WebAPI.getBooks)

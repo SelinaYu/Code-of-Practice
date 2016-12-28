@@ -1,11 +1,8 @@
 import React from 'react';
 import {Form, FormGroup, Button, FormControl, ControlLabel ,Col,Media} from 'react-bootstrap';
 import styles from './LoginPageStyles';
-const LoginPage = ({
-	onChangeUserNameInput,
-  onChangePasswordInput,
-  onLoginSubmit
-}) => (
+const LoginPage = (props) =>{ 
+  return (
   <div>
     <Media>      
       <Media.Left align="top">
@@ -22,7 +19,8 @@ const LoginPage = ({
              <Col smOffset={1}md={10} sm={10}>
             <FormControl 
             type="text" 
-            onChange={onChangeUserNameInput}
+             defaultValue = {props.username}
+            onChange={props.onChangeUsernameInput}
              placeholder="用户名"
              />
             </Col>
@@ -31,14 +29,15 @@ const LoginPage = ({
              <Col smOffset={1}md={10} sm={10}>
             <FormControl 
             type="password" 
-            onChange={onChangePasswordInput}
+             defaultValue = {props.password}
+            onChange={props.onChangePasswordInput}
              placeholder="密码"
              />
             </Col>
            </FormGroup> 
            
            <Button
-             onClick={onLoginSubmit}
+             onClick={props.onLoginSubmit}
              bsStyle="danger"
              block
            >    提交
@@ -51,5 +50,5 @@ const LoginPage = ({
 
     
   </div>
-);
+)};
 export default LoginPage;

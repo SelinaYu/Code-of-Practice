@@ -8,7 +8,8 @@ export const UserState = Immutable.fromJS({
 	password:'',
 	tel:'',
 	sex:'',
-	isAuthorized:false
+	isAuthorized:false,
+	accountID:''
 });
 
 export const BookState = Immutable.fromJS({

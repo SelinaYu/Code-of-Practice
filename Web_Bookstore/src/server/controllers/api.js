@@ -8,27 +8,28 @@ const apiRoutes = express.Router();
 
 
 //登录请求
-// apiRoutes.get('/login',function(req,res){
-//   let account = req.query.username;
-//   let password = req.query.password;
-//   new sql.Request().query('select * from Account where username =' + accountName).then(function(user){
-//     if(!user){
-//     	res.json({success:false,message:'登陆失败，没有该用户！'});
-//     }else if(user){
-//     	if(user[0].accountPsd != password ){
-//     		res.json({success:false,message:'登陆失败，密码错误！'})
-//     	}
-//     }else{
-//     	res.json({
-//     		success:true,
-//     		message:'登录成功',
-//     		userId:user[0].accountID
-//     	});
-//     }
-//   }).catch(function(err){
-//   	  console.log(err);
-//   });
-// });
+apiRoutes.post('/login',function(req,res){
+  let account = req.body.username;
+  let password = req.body.password;
+   sql.query`select * from Account where accountName =${account}`.then(function(user){
+    console.log(user);
+    if(user.length == 0){
+    	res.status(200).json({success:false,message:'登陆失败，没有该用户！'});
+    }else if(user.length!=0){
+    	if(user[0].accountPsd != password ){
+    		res.status(200).json({success:false,message:'登陆失败，密码错误！'})
+    	}else{
+      res.status(200).json({
+        success:true,
+        message:'登录成功',
+        userId:user[0].accountID
+      });
+    }
+    }
+  }).catch(function(err){
+  	  console.log(err);
+  });
+});
 //获取所有书籍信息
 apiRoutes.get('/books',(req,res) => {
   sql.connect(config,function(err){

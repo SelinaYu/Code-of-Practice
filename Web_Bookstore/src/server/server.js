@@ -66,7 +66,8 @@ const handleRender = (req,res) => {
                 password:'',
                 tel:'',
                 sex:'',
-                isAuthorized:false
+                isAuthorized:false,
+                accountID:''
                },
                book:{
                   books:response[0].data,

@@ -10,11 +10,13 @@ export default connect(
   (state) => ({
     isAuthorized: state.getIn(['user', 'isAuthorized']),
     books: state.getIn(['book', 'books']),
+    accountID:state.getIn(['user','accountID'])
   }),
   (dispatch) => ({
-  	onTakeToCar:(books) => (bookID) => (
-      dispatch(takeToCar(dispatch,bookID))
-  	)
+  	onTakeToCar:(bookID,isAuthorized,accountID) => () => {
+      dispatch(takeToCar(dispatch,bookID,isAuthorized,accountID))
+    }
+  	
   }),
   (stateProps,dispatchProps,ownProps) => {
   	const { books } = stateProps;

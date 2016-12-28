@@ -17,7 +17,7 @@ const BookBox = (props) => {
         <p>{props.book.get('bookWriter')}</p>
       </Media.Body>
       <Media.Right>
-         <Button bsStyle="danger" onClick={props.onTakeToCar(props.book.get('bookID'))}>加入购物车</Button>
+         <Button bsStyle="danger" onClick={props.onTakeToCar(props.book.get('bookID'),props.isAuthorized,props.accountID)}>加入购物车</Button>
       </Media.Right>
     </Media>
 

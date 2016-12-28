@@ -8,7 +8,7 @@ import {
 export default connect(
   (state) => ({
      username:state.getIn(['user','username']),
-     password:state.getIn(['user','password'])
+     password:state.getIn(['user','password']),
   }),
   (dispatch) => ({
   	onChangeUsernameInput:(event) => (
