@@ -9,7 +9,8 @@ export const UserState = Immutable.fromJS({
 	tel:'',
 	sex:'',
 	isAuthorized:false,
-	accountID:''
+	accountID:'',
+	accountRight:''
 });
 
 export const BookState = Immutable.fromJS({
@@ -25,3 +26,8 @@ export const BookState = Immutable.fromJS({
   }
 });
 
+export const BookStoreState = Immutable.fromJS({
+  name:'',
+  addr:'',
+  tele:''
+})

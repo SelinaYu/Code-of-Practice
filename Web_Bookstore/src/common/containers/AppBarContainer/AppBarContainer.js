@@ -10,6 +10,8 @@ import {
 export default connect(
   (state) => ({
   	isAuthorized: state.getIn(['user','isAuthorized']),
+    username: state.getIn(['user','username']),
+    accountRight:state.getIn(['user','accountRight'])
   }),
   (dispatch) => ({
   	onLogout:() => (

@@ -53,7 +53,7 @@ const handleRender = (req,res) => {
 		}else if(renderProps == null){
 			res.status(404).send('Not Found');
 		}
-		fetchComponentData(req.cookies.token).then((response) => {
+		fetchComponentData().then((response) => {
 			let isAuthorized = false;
 			// if(response[1].data.success === true){
 			// 	isAuthorized = true;
@@ -61,13 +61,14 @@ const handleRender = (req,res) => {
 			// 	isAuthorized = false;
 			// }
 			const initialState = fromJS({
-               user:{
+              user:{
                 username:'',
                 password:'',
                 tel:'',
                 sex:'',
                 isAuthorized:false,
-                accountID:''
+                accountID:'',
+                accountRight:''
                },
                book:{
                   books:response[0].data,
@@ -80,6 +81,11 @@ const handleRender = (req,res) => {
                     bookNo:'',
                     bookPrice:''
                   }
+               },
+               bookstore:{
+                  name:response[1].data[0].name,
+                  addr:response[1].data[0].addr,
+                  tele:response[1].data[0].tele
                }
 			});
 			//server端渲染

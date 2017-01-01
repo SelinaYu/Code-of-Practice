@@ -7,6 +7,7 @@ export default {
 		background:'#EEEEEF',
 		padding:'1em',
 		paddingBottom:'2em',
-		marginTop:'3em'
+		marginTop:'5em',
+		width:'300px'
 	}
 }

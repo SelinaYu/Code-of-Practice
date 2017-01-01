@@ -6,10 +6,12 @@ export default {
 	register_box:{
 		background:'#EEEEEF',
 		padding:'1em',
-		paddingBottom:'2em'
+		paddingBottom:'2em',
+		width:'300px',
+		marginTop:'5em'
 	},
 	sex_box:{
-		marginRight:'3em',
-		paddingLeft:'2.5em'
+        display:'flex',
+        justifyContent:'space-around'
 	}
 }

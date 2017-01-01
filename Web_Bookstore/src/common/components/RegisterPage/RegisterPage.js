@@ -6,14 +6,14 @@ const RegisterPage = (props) => {
     <Media>      
       <Media.Left align="top">
         <Col smOffset={2} mdOffset={5}>
-          <img src="/static/SysImg/picture.jpg" alt="Image"/>
+          <img width="500px" height="500px" src="/static/SysImg/picture.jpg" alt="Image"/>
         </Col>
       </Media.Left>
       <Media.Body>
         <Col style={styles.register_box} mdOffset={4} smOffset={5}  sm={5} md={3}>
           <Form horizontal>
            <h3 style={styles.register_h1}>注册</h3>
-           <FormGroup controlId="formBasicText">
+           <FormGroup  bsSize="large"controlId="formBasicText">
 
              <Col smOffset={1}md={10} sm={10}>
             <FormControl 
@@ -24,7 +24,7 @@ const RegisterPage = (props) => {
              />
             </Col>
            </FormGroup>
-           <FormGroup controlId="formBasicText">
+           <FormGroup  bsSize="large" controlId="formBasicText">
              <Col smOffset={1}md={10} sm={10}>
             <FormControl 
             type="password" 
@@ -34,7 +34,7 @@ const RegisterPage = (props) => {
              />
             </Col>
            </FormGroup>  
-           <FormGroup controlId="formBasicText">
+           <FormGroup  bsSize="large" controlId="formBasicText">
              <Col smOffset={1}md={10} sm={10}>
             <FormControl 
             type="text" 
@@ -45,8 +45,8 @@ const RegisterPage = (props) => {
             </Col>
            </FormGroup> 
            <FormGroup onChange={props.onChangeSexInput} defaultValue ={props.sex}>
-            <Col smOffset={1}md={10} sm={10}>
-			      <Radio inline name="sex" value="男" style={styles.sex_box}>
+            <Col smOffset={1}md={10} sm={10} style={styles.sex_box}>
+			      <Radio inline name="sex" value="男" >
 			        男
 			      </Radio>
 			      <Radio inline name="sex" value="女" >
@@ -56,6 +56,7 @@ const RegisterPage = (props) => {
            </FormGroup>
            <Button
              onClick={props.onRegisterSumbit}
+              bsSize="large"
              bsStyle="danger"
              block
            >    注册

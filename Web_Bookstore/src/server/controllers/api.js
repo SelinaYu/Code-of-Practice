@@ -22,7 +22,8 @@ apiRoutes.post('/login',function(req,res){
       res.status(200).json({
         success:true,
         message:'登录成功',
-        userId:user[0].accountID
+        userId:user[0].accountID,
+        accountRight:user[0].accountRight
       });
     }
     }
@@ -40,7 +41,16 @@ apiRoutes.get('/books',(req,res) => {
             res.status(200).json(books);
     })
   })
-})
+});
+//获取书店信息
+apiRoutes.get('/getBookstoreInfo',(req,res) => {
+  sql.connect(config,function(err){
+    new sql.Request().query('select * from Bookstore_Inf',function(err,bookstoreInfo){
+            if (err) console.log(err)
+            res.status(200).json(bookstoreInfo);
+    })    
+  })
+});
 apiRoutes.post('/register',(req,res) => {
   const accountName = req.body.accountName;
   const accountPsd = req.body.accountPsd;

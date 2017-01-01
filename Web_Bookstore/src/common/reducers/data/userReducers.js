@@ -17,8 +17,6 @@ const userReducers = handleActions ({
 	),
 	AUTH_COMPLETE:(state) => (
 		state.merge({
-			username:'',
-			password:'',
 			isAuthorized:true
 		})
 	),

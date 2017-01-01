@@ -4,7 +4,7 @@ import axios from 'axios';
 export default function fetchComponentData(token = 'token'){
 	const promises = [
 	           axios.get('http://localhost:3000/api/books'), 
-	           // axios.get('http://localhost:3000/api/authenticate?token=' + token)
+	           axios.get('http://localhost:3000/api/getBookstoreInfo')
 	           ];
 	return Promise.all(promises);
 }

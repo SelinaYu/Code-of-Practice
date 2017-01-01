@@ -20,15 +20,19 @@ export default {
 				dispatch(authError);
 				alert(response.data.message);
 				window.location.reload();
-			}else{
+			}else{ 
+               dispatch(setUser({key:'accountID',value:response.data.userId}));
+               dispatch(setUser({key:'accountRight',value:response.data.accountRight}));                
 			    dispatch(authComplete());
-                setUser('accountID',response.data.userId)
 			    browserHistory.push('/');	
 			}
 		})
 		.catch(function(error){
 			dispatch(authError)
 		});
+	},
+	logout:(dispatch) => {
+		browserHistory.push('/')
 	},
 	getBooks:()=>{
 		axios.get('/api/books')
