@@ -25,8 +25,10 @@ import apiRoutes from './controllers/api.js';
 const app = express();
 const port =  process.env.PORT || 3000;
 
-// const connectPool = sql.connect(config);
-sql.connect(config);
+// 连接数据库
+sql.connect(config,function(err){
+    if (err) { console.log('Connect err: ' + err); return; }
+});
 app.set('env','production');
 //设定静态资源
 //使用 /static 作为前缀来加载 public 文件夹下的文件了

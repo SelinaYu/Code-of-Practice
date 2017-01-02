@@ -4,9 +4,9 @@ import ViewBookstoreInfo from '../../components/ViewBookstoreInfo';
 
 export default connect(
   (state)=> ({
-   name:state.getIn(['bookStore','name']),
-   addr:state.getIn(['bookStore','addr']),
-   tele:state.getIn(['bookStore','tele'])
+   name:state.getIn(['bookstore','name']),
+   addr:state.getIn(['bookstore','addr']),
+   tele:state.getIn(['bookstore','tele'])
   }),
   (dispatch) => ({
   })

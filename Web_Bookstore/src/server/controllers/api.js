@@ -33,23 +33,19 @@ apiRoutes.post('/login',function(req,res){
 });
 //获取所有书籍信息
 apiRoutes.get('/books',(req,res) => {
-  sql.connect(config,function(err){
     new sql.Request().query('select * from Book',function(err,books){
             if (err) console.log(err)
             // send records as a response
             // res.send(recordset);
             res.status(200).json(books);
     })
-  })
 });
 //获取书店信息
 apiRoutes.get('/getBookstoreInfo',(req,res) => {
-  sql.connect(config,function(err){
     new sql.Request().query('select * from Bookstore_Inf',function(err,bookstoreInfo){
             if (err) console.log(err)
             res.status(200).json(bookstoreInfo);
     })    
-  })
 });
 apiRoutes.post('/register',(req,res) => {
   const accountName = req.body.accountName;
