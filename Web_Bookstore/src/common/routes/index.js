@@ -4,6 +4,7 @@ import HomePageContainer from '../containers/HomePageContainer'
 import LoginPageContainer from '../containers/LoginPageContainer';
 import RegisterPageContainer from '../containers/RegisterPageContainer';
 import ViewBookstoreInfoContainer from '../containers/ViewBookstoreInfoContainer';
+import ChangePasswordContainer from '../containers/ChangePasswordContainer';
 import Main from '../components/Main' ;
 
 export default (
@@ -12,5 +13,6 @@ export default (
     <Route path="/login" component={LoginPageContainer}/>
     <Route path="/register" component={RegisterPageContainer}/>
     <Route path="/ViewBookstoreInfo" component={ViewBookstoreInfoContainer}/>
+    <Route path="/account/changePassword" component ={ChangePasswordContainer}/>
   </Route>
 )

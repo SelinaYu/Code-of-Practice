@@ -11,5 +11,7 @@ export const TAKE_TO_CAR = "TAKE_TO_CAR";
 export const GET_BOOKS = "GET_BOOKS";
 
 export const SET_BOOKSTORE_INFO = "SET_BOOKSTORE_INFO";
+export const ADD_USER = "ADD_USER";
+export const CHANGE_PASSWORD= "CHANGE_PASSWORD";
 
 

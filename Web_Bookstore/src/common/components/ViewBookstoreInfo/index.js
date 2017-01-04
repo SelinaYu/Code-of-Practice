@@ -1,1 +1,1 @@
-export {default} from './ViewBookstoreInfo'
+export {default} from './ViewBookstoreInfo';

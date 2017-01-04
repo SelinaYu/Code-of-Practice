@@ -12,13 +12,13 @@ const ViewBookstoreInfo = (props) =>
       </Col>
       <Col  md={3} sm={3} style={styles.bookstore_info}>
         <div>
-        <label for="">店名: </label>{props.name}
+        店名: {props.name}
         </div>
         <div>
-        <label for="">地址: </label>{props.addr}
+        地址: {props.addr}
         </div>
         <div>
-        <label for="">联系方式: </label>{props.tele}
+        联系方式:{props.tele}
         </div>
       </Col>
       </Row>

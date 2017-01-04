@@ -53,8 +53,6 @@ apiRoutes.post('/register',(req,res) => {
   const accountSex = req.body.accountSex;
   const accountTele = req.body.accountTele;
   const accountRight = 3;//3表示用户
-  console.log(accountSex)
-  sql.connect(config,function(err){
    const request = new sql.Request();
      // request.on('info',function(info){
      //  console.dir(info);
@@ -83,6 +81,18 @@ apiRoutes.post('/register',(req,res) => {
       };
       res.status(200).json({success:true})
     })
-  })
+
+});
+//修改密码
+apiRoutes.post('/changePassword',(req,res)=> {
+    const accountID = req.body.accountID;
+    const newPassword = req.body.newPassword;
+    sql.query`update  Account set accountPsd=${newPassword} where accountID =${accountID}`
+    .then(function(recordset){
+     res.status(200).json({success:true});
+    }).catch(function(err){
+      console.log(err);
+      res.status(500).json({success:false,message:'修改密码失败！'})
+  });
 })
 export default apiRoutes;

@@ -17,8 +17,8 @@ export default {
 		})
 		.then((response) => {
 			if(response.data.success == false){
-				dispatch(authError);
 				alert(response.data.message);
+				dispatch(authError);
 				window.location.reload();
 			}else{ 
                dispatch(setUser({key:'accountID',value:response.data.userId}));
@@ -56,6 +56,37 @@ export default {
 			}
 		}).
 		catch(function(error){});
+	},
+	changePassword:(dispatch,accountID,password,inputPassword,newPassword,reNewPassword)=> {
+		console.log(accountID,password,inputPassword,newPassword,reNewPassword)
+		if(password != inputPassword){
+          alert("密码输入错误，修改失败");
+          return;
+		}else if(newPassword == ''){
+			alert("密码输入不能为空");
+			return;
+		}
+		else if(newPassword != reNewPassword){
+			alert("两次密码输入不同错误，修改失败");
+			return;
+		}else{
+          axios.post('/api/changePassword',{
+             accountID:accountID,
+             newPassword:newPassword
+          }).then((response) => {
+          	if(response.data.success == false){
+          		alert("数据库修改失败")
+          	}else{
+               dispatch(setUser({key:'password',value:newPassword})); 
+               dispatch(setUser({key:'inputPassword',value:''}));
+               dispatch(setUser({key:'newPassword',value:''}));
+               dispatch(setUser({key:'reNewPassword',value:''})); 
+               alert("修改成功");  
+
+          	}
+          })
+		}
+
 	},
 	takeToCar:(dispatch,bookID,isAuthorized,accountID) => {
 		console.log(isAuthorized)

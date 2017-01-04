@@ -13,4 +13,5 @@ const config = {
   	encrypt:true
   }
 }
+
 export default config;
