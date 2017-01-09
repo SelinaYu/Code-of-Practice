@@ -22,7 +22,9 @@ const userReducers = handleActions ({
 	),
 	AUTH_ERROR: (state) => (
 		state.merge({
-			isAuthorized:false
+			isAuthorized:false,
+			username:'',
+			password:''
 		})
 	),
 	START_LOGOUT:(state) => (

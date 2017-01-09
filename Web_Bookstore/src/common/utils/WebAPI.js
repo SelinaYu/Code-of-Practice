@@ -8,7 +8,25 @@ import {
 	completeLogout,
 	setUser
 } from '../actions';
-
+function getCookie(keyName) {
+  var name = keyName + '=';
+  const cookies = document.cookie.split(';');
+  for(let i = 0; i < cookies.length; i++) {
+      let cookie = cookies[i];
+      while (cookie.charAt(0)==' ') {
+          cookie = cookie.substring(1);
+      }
+      if (cookie.indexOf(name) == 0) {
+        return cookie.substring(name.length, cookie.length);
+      }
+  }
+  return "";
+}
+function setCookie(key,value){
+  let  cookietext = key+"="+encodeURIComponent(value);
+  document.cookie = cookietext;
+  return cookietext;
+}
 export default {
 	login: (dispatch,username,password) => {
 		axios.post('/api/login',{
@@ -18,11 +36,30 @@ export default {
 		.then((response) => {
 			if(response.data.success == false){
 				alert(response.data.message);
-				dispatch(authError);
+				dispatch(authError()); 
 				window.location.reload();
 			}else{ 
-               dispatch(setUser({key:'accountID',value:response.data.userId}));
-               dispatch(setUser({key:'accountRight',value:response.data.accountRight}));                
+				const accountID = response.data.userId;
+				const accountRight = response.data.accountRight;
+				const tel = response.data.tel;
+				const sex = response.data.sex;
+
+				if(!document.cookie.token){
+					let date = new Date();
+					date.setTime(date.getTime()+(3*60*1000)); //三分钟
+					const expires = 'expires='+date.toUTCString();
+					document.cookie = 'token='+response.data.token+';'+expires;
+					setCookie('accountID',accountID);
+					setCookie('accountRight',accountRight);
+					setCookie('username',username);
+					setCookie('password',password);
+					setCookie('tel',tel);
+					setCookie('sex',sex);
+				}
+               dispatch(setUser({key:'accountID',value:accountID}));
+               dispatch(setUser({key:'accountRight',value:accountRight}));
+               dispatch(setUser({key:'tel',value:tel})); 
+                dispatch(setUser({key:'sex',value:sex}));          
 			    dispatch(authComplete());
 			    browserHistory.push('/');	
 			}
@@ -32,7 +69,23 @@ export default {
 		});
 	},
 	logout:(dispatch) => {
+		document.cookie = 'token=; ' + 'expires=Thu, 01 Jan 1970 00:00:01 GMT;';
 		browserHistory.push('/')
+	},
+	checkAuth:(dispatch,token) => {
+		axios.post('api/authenticate',{
+			token:token
+		})
+		.then((response)=>{
+			if(response.data.success === false){
+				dispatch(authError())
+			}else{
+				dispatch(authComplete())
+			}
+		})
+		.catch(function(error){
+			dispatch(authError())
+		})
 	},
 	getBooks:()=>{
 		axios.get('/api/books')
@@ -70,7 +123,7 @@ export default {
 			alert("两次密码输入不同错误，修改失败");
 			return;
 		}else{
-          axios.post('/api/changePassword',{
+          axios.put('/api/changePassword?token=' + getCookie('token'),{
              accountID:accountID,
              newPassword:newPassword
           }).then((response) => {
@@ -88,8 +141,35 @@ export default {
 		}
 
 	},
+	changePersonalInfo:(dispatch,accountID,username,sex,tel)=>{
+          axios.post('/api/changePersonalInfo?token=' + getCookie('token'),{
+             username:username,
+             sex:sex,
+             tel:tel,
+             accountID:accountID
+          }).then((response) => {
+          	if(response.data.success == false){
+          		alert("数据库修改失败")
+          	}else{
+               alert("修改成功");  
+          	}
+          })		
+	},
+	// getUserInfo:(dispatch,accountID) => {
+	// 	console.log("accountID",accountID)
+	// 	axios.post('/api/getUserInfo?token=' + getCookie('token'),{
+	// 		accountID: accountID
+	// 	}).then((response)=>{
+ //      	if(response.data.success == false){
+ //      		alert("获取用户数据失败")
+ //      	}else{
+ //      	   const data = response.data;
+ //           dispatch(setUser({key:'tel',value:data.tel}));  
+ //           dispatch(setUser({key:'sex',value:data.sex}));   	   
+ //      	}			
+	// 	})
+	// },
 	takeToCar:(dispatch,bookID,isAuthorized,accountID) => {
-		console.log(isAuthorized)
 	  if(isAuthorized == false){
 	  	browserHistory.push('/login')
 	  }else{

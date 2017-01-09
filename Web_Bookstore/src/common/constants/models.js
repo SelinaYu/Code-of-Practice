@@ -6,6 +6,8 @@ export const UiState = Immutable.fromJS({
 export const UserState = Immutable.fromJS({
 	username:'',
 	password:'',
+	newPassword:'',
+	reNewPassword:'',
 	tel:'',
 	sex:'',
 	isAuthorized:false,

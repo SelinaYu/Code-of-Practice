@@ -9,7 +9,8 @@ import {
 	CHECK_AUTH,
 	SET_USER,
 	ADD_USER,
-	CHANGE_PASSWORD
+	CHANGE_PASSWORD,
+	CHANGE_PERSONALINFO
 } from '../constants/actionTypes';
 
 export const authStart = createAction('AUTH_START', WebAPI.login);
@@ -21,3 +22,4 @@ export const setUser = createAction('SET_USER');
 
 export const addUser = createAction('ADD_USER',WebAPI.addUser);
 export const changePassword = createAction('CHANGE_PASSWORD',WebAPI.changePassword)
+export const changePersonalInfo = createAction('CHANGE_PERSONALINFO',WebAPI.changePersonalInfo);

@@ -11,7 +11,8 @@ const config = {
   database: 'Web_Bookstore',
   options:{
   	encrypt:true
-  }
+  },
+  secret:'Web_Bookstore'//用于jsonwebtoken
 }
 
 export default config;

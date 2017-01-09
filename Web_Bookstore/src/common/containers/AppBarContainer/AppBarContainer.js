@@ -4,8 +4,7 @@ import AppBar from '../../components/AppBar';
 import { browserHistory } from 'react-router';
 
 import {
-	startLogout,
-	setUi
+	startLogout
 } from '../../actions';
 export default connect(
   (state) => ({
@@ -18,32 +17,35 @@ export default connect(
       dispatch(startLogout(dispatch))
   	),
     onChangePassword:(isAuthorized) => ()=>{
-       isAuthorized?browserHistory.push('/account/changePassword'):browserHistory.push('/login')
+       isAuthorized?browserHistory.push('/account/changePassword'):null
     },
     onChangePersonalInfo:(isAuthorized) => ()=>{
-       isAuthorized?browserHistory.push('/account/changePersonalInfo'):browserHistory.push('/login')
+       isAuthorized?browserHistory.push('/account/changePersonalInfo'):null
     },
     onRecharge:(isAuthorized) => ()=>{
-       isAuthorized?browserHistory.push('/account/recharge'):browserHistory.push('/login')
+       isAuthorized?browserHistory.push('/account/recharge'):null
     },
     onOrder:(isAuthorized) => ()=>{
-       isAuthorized?browserHistory.push('/account/order'):browserHistory.push('/login')
+       isAuthorized?browserHistory.push('/account/order'):null
     },
     onBuyCar:(isAuthorized) => ()=>{
-       isAuthorized?browserHistory.push('/account/buycar'):browserHistory.push('/login')
+       isAuthorized?browserHistory.push('/account/buycar'):null
     },  
     onManageStaff:(isAuthorized) => ()=>{
-       isAuthorized?browserHistory.push('/manage/staff'):browserHistory.push('/login')
+       isAuthorized?browserHistory.push('/manage/staff'):null
     },    
     onManageBookstore:(isAuthorized) => ()=>{
-       isAuthorized?browserHistory.push('/manage/bookstore'):browserHistory.push('/login')
+       isAuthorized?browserHistory.push('/manage/bookstore'):null
     },  
     onManageBook:(isAuthorized) => ()=>{
-       isAuthorized?browserHistory.push('/manage/book'):browserHistory.push('/login')
+       isAuthorized?browserHistory.push('/manage/book'):null
+    },
+    onBookstore:() => ()=>{
+       browserHistory.push('/ViewBookstoreInfo')
     },
   }),
   (stateProps, dispatchProps, ownProps) => {
-    const { isAuthorized, username ,accountRight} = stateProps;
+    const { isAuthorized, username ,accountRight } = stateProps;
     const { 
       onChangePassword,
       onChangePersonalInfo, 
@@ -52,7 +54,8 @@ export default connect(
       onBuyCar,
       onManageStaff,
       onManageBookstore,
-      onManageBook
+      onManageBook,
+      onBookstore
     } = dispatchProps;
     return Object.assign({}, stateProps, dispatchProps, ownProps, {
       onChangePassword: onChangePassword(isAuthorized),
@@ -63,6 +66,7 @@ export default connect(
       onManageStaff: onManageStaff(isAuthorized),
       onManageBookstore: onManageBookstore(isAuthorized),
       onManageBook: onManageBook(isAuthorized),
+      onBookstore:onBookstore()
     });
   }
 )(AppBar);

@@ -55,22 +55,31 @@ const handleRender = (req,res) => {
 		}else if(renderProps == null){
 			res.status(404).send('Not Found');
 		}
-		fetchComponentData().then((response) => {
+		fetchComponentData(req.cookies.token).then((response) => {
 			let isAuthorized = false;
-			// if(response[1].data.success === true){
-			// 	isAuthorized = true;
-			// }else{
-			// 	isAuthorized = false;
-			// }
+      let username,password,accountRight,accountID,tel,sex;
+
+			if(response[2].data.success === true){
+				isAuthorized = true;
+        username = decodeURIComponent(req.cookies.username);
+        password = decodeURIComponent(req.cookies.password);
+        accountRight= decodeURIComponent(req.cookies.accountRight);
+        accountID = decodeURIComponent(req.cookies.accountID);
+        tel = decodeURIComponent(req.cookies.tel);
+        sex = decodeURIComponent(req.cookies.sex);
+			}else{
+				isAuthorized = false;
+			}
+
 			const initialState = fromJS({
               user:{
-                username:'',
-                password:'',
-                tel:'',
-                sex:'',
-                isAuthorized:false,
-                accountID:'',
-                accountRight:''
+                username:username,
+                password:password,
+                tel: tel,
+                sex: sex,
+                isAuthorized:isAuthorized,
+                accountID:accountID,
+                accountRight:accountRight
                },
                book:{
                   books:response[0].data,

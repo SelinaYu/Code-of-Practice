@@ -26,8 +26,8 @@ const AppBar = (props) => (
       ):
      (
         <NavDropdown eventKey={3} title="我的书店"  id="basic-nav-dropdown1">
-          <MenuItem eventKey={3.1} onSelect={props.onChangePassword}>修改密码</MenuItem>
-          <MenuItem eventKey={3.2} onSelect={props.onChangePersonalInfo}>修改个人信息</MenuItem>
+          <MenuItem eventKey={3.1} href='account/changePassword'>修改密码</MenuItem>
+          <MenuItem eventKey={3.2} href='account/changePersonalInfo'>修改个人信息</MenuItem>
         </NavDropdown>
       )
    }
@@ -51,7 +51,7 @@ const AppBar = (props) => (
                 </NavDropdown>)
       )
     }
-        <NavItem eventKey={5} href="/ViewBookstoreInfo">书店信息</NavItem>
+        <NavItem eventKey={5} onClick={props.onBookstore}>书店信息</NavItem>
       </Nav>  
 
       {
