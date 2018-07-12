@@ -12,7 +12,7 @@ JQuery 版本: [点击预览](http://selinayu.cc/Code-of-Practice/quiz/jquery/in
 
 
 
-### 别碰绿色球 尝试写的第一个小游戏
+### keepRunning 尝试写的第一个小游戏
 
 [点击预览](http://selinayu.cc/Code-of-Practice/keepRunning/BallGame.html)
 
