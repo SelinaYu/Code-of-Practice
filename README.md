@@ -21,3 +21,5 @@ JQuery 版本: [点击预览](http://selinayu.cc/Code-of-Practice/quiz/jquery/in
 
 
 
+### canvas-圆环百分比
+[点击预览](http://selinayu.cc/Code-of-Practice/canvasPerCircle/index.html)
