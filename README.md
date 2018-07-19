@@ -23,3 +23,7 @@ JQuery 版本: [点击预览](http://selinayu.cc/Code-of-Practice/quiz/jquery/in
 
 ### canvas-圆环百分比
 [点击预览](http://selinayu.cc/Code-of-Practice/canvas-percent-circle/index.html)
+
+### canvas-小球运动路径
+[点击预览](http://selinayu.cc/Code-of-Practice/canvas-ball-path/index.html)
+
