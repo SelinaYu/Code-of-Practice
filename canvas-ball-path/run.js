@@ -5,6 +5,9 @@
   let circle = document.getElementById('circle');
   let ellipse = document.getElementById('ellipse');
   let pulse = document.getElementById('pulse');
+  let sin = document.getElementById('sin');
+  let mouse = document.getElementById('mouse');
+  let wave = document.getElementById('wave');
 
   let width = canvas.width = window.innerWidth;
   let height = canvas.height = 600;
@@ -70,9 +73,29 @@
     context.stroke();
     context.restore();
   }
-
-  
-
+// x,y 起点 endX终点横坐标，x1,y1控制间距和y轴最大值
+  function drawSin(x,y,x1,y1,endX,color){
+    context.save();
+    context.strokeStyle = color;    
+    context.beginPath();
+    context.moveTo(x,y);
+    for(let temp = 0;temp < endX;temp+= Math.PI/180 ){
+      context.lineTo(temp  * x1, y1 * Math.sin(temp) + y);
+    }
+    // context.closePath();
+    context.stroke();
+    context.restore();
+  }
+  // 画矩形
+  function drawRect(x,y,width,height,color){
+    context.save();
+    context.fillStyle = color;
+    context.beginPath();
+    context.fillRect(x,y,width,height);
+    context.closePath();
+    context.fill();
+    context.restore();
+  }
   // 匀速直线运动
   let uniformX = radius; // 匀速运动 x 初始位置 
   let uniformSpeed = 5;
@@ -153,5 +176,89 @@ function pulseRun(){
   pulseOpValue += pulseOpSpeed;
   pulseAlpha = Math.abs(Math.sin(pulseOpValue))
   context.restore();
-  
+}
+
+// 正弦运动
+sin.onclick = sinRun;
+let xSinScale = 100; // 控制x轴坐标
+let ySinScale = 100; // 控制y轴坐标
+let xSinInit = 0; // x轴起始坐标
+function sinRun(){
+  window.cancelAnimationFrame(animationFrame);
+  animationFrame = window.requestAnimationFrame(sinRun);
+  context.clearRect(0,0,width,height);
+  context.save();
+  drawSin(0,height/2,xSinScale,ySinScale,width,'red');  
+  drawCircle(xSinInit * xSinScale ,height/2 + Math.sin(xSinInit) *ySinScale,radius,'green');
+  xSinInit += Math.PI / 180;
+  if(xSinInit * xSinScale > width){
+    xSinInit = 0;
+  }
+  context.restore();
+}
+
+// 绕鼠标旋转
+// Math.atan2(dy,dx) dy,dx 两坐标的距离，可以算出旋转的角度
+let cubeWidth = 200; // 旋转的正方体的长度
+ mouse.onclick = function(){
+    window.cancelAnimationFrame(animationFrame);
+    context.clearRect(0,0,width,height);
+    drawRect(width/2 -cubeWidth/2,height/2 -cubeWidth/2,cubeWidth,cubeWidth,'green');
+    canvas.addEventListener('mousemove',mouseMoveRun)
+ }
+canvas.onmouseleave = function(){
+  canvas.removeEventListener('mousemove',mouseMoveRun)
+}
+ function mouseMoveRun(e){
+   let cx = e.clientX;
+   let cy = e.clientY;
+   let dy = cy - height/2;
+   let dx = cx - width/2;
+   let rotation = Math.atan2(dy,dx);
+   context.clearRect(0,0,width,height);
+   context.save()
+   console.log(rotation,cubeWidth)
+   rotateCube(rotation.toFixed(2),cubeWidth);
+   context.restore(); 
+ }
+ // 旋转正方体
+ function rotateCube(rotation,cubeWidth){
+  context.save();
+  context.fillStyle ='green';
+  context.translate(width/2,height/2);  
+  context.rotate(rotation);  
+  context.fillRect(-cubeWidth/2, -cubeWidth/2,cubeWidth,cubeWidth);
+  context.fill();  
+  context.restore();
+}
+
+// 水波浪,差分函数
+let waterOffsetY = 1000; // 初始偏移量
+let diffRate = 0.8; // 偏移率
+let point = 300;  
+let buffer = 20; // 缓冲
+let pointArr = []; // 存储每个点的信息
+let diffValue = [];// 存储每个点的差分值
+wave.onclick =  waveRun;
+
+
+function waveRun(){
+  context.clearRect(0,0,width,height);
+  window.cancelAnimationFrame(animationFrame);
+  animationFrame = window.requestAnimationFrame(waveRun);
+  drawWaterLevel('#5eeae2');
+}
+
+// 画水平面
+function drawWaterLevel(color){
+  context.save();
+  context.fillStyle = color;
+  context.beginPath();
+  context.moveTo(0,height/2);
+  context.lineTo(width,height/2);
+  context.lineTo(width,height);
+  context.lineTo(0,height);
+  context.closePath();
+  context.fill();  
+  context.restore();
 }
