@@ -73,16 +73,17 @@
     context.stroke();
     context.restore();
   }
-// x,y 起点 endX终点横坐标，x1,y1控制间距和y轴最大值
-  function drawSin(x,y,x1,y1,endX,color){
+// startX,startY 起点 endX终点横坐标，x1,y1控制渲染间距和y轴高度
+// y = Asin(Bx+C) + D
+// 振幅 A:高度， 周期 B/(2 * Math.PI)控制波浪的宽度,相移 -C/B控制水平移动，D高度
+  function drawSin(startX,startY,endX,step,A,B,C,color){
     context.save();
     context.strokeStyle = color;    
     context.beginPath();
-    context.moveTo(x,y);
-    for(let temp = 0;temp < endX;temp+= Math.PI/180 ){
-      context.lineTo(temp  * x1, y1 * Math.sin(temp) + y);
+    context.moveTo(startX,startY);
+    for(let temp = 0;temp < endX;temp+= Math.PI/180 * step ){
+      context.lineTo(temp , A * Math.sin(B*temp+C) + startY);
     }
-    // context.closePath();
     context.stroke();
     context.restore();
   }
@@ -180,18 +181,21 @@ function pulseRun(){
 
 // 正弦运动
 sin.onclick = sinRun;
-let xSinScale = 100; // 控制x轴坐标
-let ySinScale = 100; // 控制y轴坐标
+let sinA = 100; // 控制y轴坐标
+let sinB = 0.01;
+let sinC = 100;
+let sinStep = 3;
 let xSinInit = 0; // x轴起始坐标
 function sinRun(){
   window.cancelAnimationFrame(animationFrame);
   animationFrame = window.requestAnimationFrame(sinRun);
   context.clearRect(0,0,width,height);
   context.save();
-  drawSin(0,height/2,xSinScale,ySinScale,width,'red');  
-  drawCircle(xSinInit * xSinScale ,height/2 + Math.sin(xSinInit) *ySinScale,radius,'green');
-  xSinInit += Math.PI / 180;
-  if(xSinInit * xSinScale > width){
+  // drawSin(0,height/2,xSinScale,ySinScale,width,'red');
+  drawSin(0,height/2,width,sinStep,sinA,sinB,sinC,'red');  
+  drawCircle(xSinInit ,height/2 +  sinA * Math.sin(sinB*xSinInit+sinC),radius,'green');
+  xSinInit += Math.PI / 180 * 50;
+  if(xSinInit  > width){
     xSinInit = 0;
   }
   context.restore();
@@ -232,33 +236,39 @@ canvas.onmouseleave = function(){
   context.restore();
 }
 
-// 水波浪,差分函数
-let waterOffsetY = 1000; // 初始偏移量
-let diffRate = 0.8; // 偏移率
-let point = 300;  
-let buffer = 20; // 缓冲
-let pointArr = []; // 存储每个点的信息
-let diffValue = [];// 存储每个点的差分值
+// 水波浪
+
 wave.onclick =  waveRun;
 
-
+let waveA = 50; // 控制y轴坐标
+let waveB = 0.008;
+let waveB2 = 0.01;
+let waveC = 100;
+let waveStep = 3;
+let waveSpeed = 0.08;
+let waveSpeed2 = 0.1;
 function waveRun(){
   context.clearRect(0,0,width,height);
   window.cancelAnimationFrame(animationFrame);
   animationFrame = window.requestAnimationFrame(waveRun);
-  drawWaterLevel('#5eeae2');
-}
+  drawWaveSin(0,height/2,width,waveStep,waveA,waveB,waveC,'#beedef');
+  drawWaveSin(0,height/2,width,waveStep,waveA,waveB2,waveC,'#a8edf1'); 
+     
+  waveC += waveSpeed;
+  waveC2 += waveSpeed2;
 
-// 画水平面
-function drawWaterLevel(color){
+}
+function drawWaveSin(startX,startY,endX,step,A,B,C,color){
   context.save();
-  context.fillStyle = color;
+  context.fillStyle = color;    
   context.beginPath();
-  context.moveTo(0,height/2);
-  context.lineTo(width,height/2);
+  context.moveTo(startX,startY);
+  for(let temp = 0;temp < endX;temp+= Math.PI/180 * step ){
+    context.lineTo(temp , A * Math.sin(B*temp+C) + startY);
+  }
   context.lineTo(width,height);
   context.lineTo(0,height);
   context.closePath();
-  context.fill();  
+  context.fill();
   context.restore();
 }
