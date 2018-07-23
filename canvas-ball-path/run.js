@@ -184,8 +184,9 @@ sin.onclick = sinRun;
 let sinA = 100; // 控制y轴坐标
 let sinB = 0.01;
 let sinC = 100;
-let sinStep = 3;
+let sinStep = 5;
 let xSinInit = 0; // x轴起始坐标
+let sinSpeed = 200;
 function sinRun(){
   window.cancelAnimationFrame(animationFrame);
   animationFrame = window.requestAnimationFrame(sinRun);
@@ -194,7 +195,7 @@ function sinRun(){
   // drawSin(0,height/2,xSinScale,ySinScale,width,'red');
   drawSin(0,height/2,width,sinStep,sinA,sinB,sinC,'red');  
   drawCircle(xSinInit ,height/2 +  sinA * Math.sin(sinB*xSinInit+sinC),radius,'green');
-  xSinInit += Math.PI / 180 * 50;
+  xSinInit += Math.PI / 180 * sinSpeed;
   if(xSinInit  > width){
     xSinInit = 0;
   }
@@ -221,7 +222,6 @@ canvas.onmouseleave = function(){
    let rotation = Math.atan2(dy,dx);
    context.clearRect(0,0,width,height);
    context.save()
-   console.log(rotation,cubeWidth)
    rotateCube(rotation.toFixed(2),cubeWidth);
    context.restore(); 
  }
@@ -255,7 +255,6 @@ function waveRun(){
   drawWaveSin(0,height/2,width,waveStep,waveA,waveB2,waveC,'#a8edf1'); 
      
   waveC += waveSpeed;
-  waveC2 += waveSpeed2;
 
 }
 function drawWaveSin(startX,startY,endX,step,A,B,C,color){
