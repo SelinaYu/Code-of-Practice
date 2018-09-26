@@ -28,4 +28,5 @@ JQuery 版本: [点击预览](http://selinayu.cc/Code-of-Practice/quiz/jquery/in
 [canvas-小球运动路径](http://selinayu.cc/2018/07/23/canvas-%E5%B0%8F%E7%90%83%E8%BF%90%E5%8A%A8%E8%BD%A8%E8%BF%B9/)------[点击预览](http://selinayu.cc/Code-of-Practice/canvas-ball-path/index.html)
 
 ### canvas图片文字粒子化实现
-[点击预览](http://selinayu.cc/Code-of-Practice/canvas-particle/index.html)
+[canvas图片文字粒子化实现](https://selinayu.cc/2018/09/26/canvas%E5%9B%BE%E7%89%87%E6%96%87%E5%AD%97%E7%B2%92%E5%AD%90%E5%8C%96%E5%AE%9E%E7%8E%B0/)------[点击预览](http://selinayu.cc/Code-of-Practice/canvas-particle/index.html)
+
