@@ -30,3 +30,8 @@ JQuery 版本: [点击预览](http://selinayu.cc/Code-of-Practice/quiz/jquery/in
 ### canvas图片文字粒子化实现
 [canvas图片文字粒子化实现](https://selinayu.cc/2018/09/26/canvas%E5%9B%BE%E7%89%87%E6%96%87%E5%AD%97%E7%B2%92%E5%AD%90%E5%8C%96%E5%AE%9E%E7%8E%B0/)------[点击预览](http://selinayu.cc/Code-of-Practice/canvas-particle/index.html)
 
+
+### DragScaleView 
+
+可拖拽缩放的react组件 [点击预览](https://stackblitz.com/edit/dragscaleview)
+
