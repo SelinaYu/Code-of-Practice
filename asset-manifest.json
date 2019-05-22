@@ -1,0 +1,14 @@
+{
+  "files": {
+    "main.js": "/Code-of-Practice/dragscaleview/static/js/main.e793c375.chunk.js",
+    "main.js.map": "/Code-of-Practice/dragscaleview/static/js/main.e793c375.chunk.js.map",
+    "runtime~main.js": "/Code-of-Practice/dragscaleview/static/js/runtime~main.ba3eb466.js",
+    "runtime~main.js.map": "/Code-of-Practice/dragscaleview/static/js/runtime~main.ba3eb466.js.map",
+    "static/js/2.b1e48e36.chunk.js": "/Code-of-Practice/dragscaleview/static/js/2.b1e48e36.chunk.js",
+    "static/js/2.b1e48e36.chunk.js.map": "/Code-of-Practice/dragscaleview/static/js/2.b1e48e36.chunk.js.map",
+    "index.html": "/Code-of-Practice/dragscaleview/index.html",
+    "precache-manifest.863d74789954531dd0de513627311e89.js": "/Code-of-Practice/dragscaleview/precache-manifest.863d74789954531dd0de513627311e89.js",
+    "service-worker.js": "/Code-of-Practice/dragscaleview/service-worker.js",
+    "static/media/style.less": "/Code-of-Practice/dragscaleview/static/media/style.ec0793f5.less"
+  }
+}
