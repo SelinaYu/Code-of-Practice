@@ -1,0 +1,35 @@
+[{
+    "question": "What room has no walls,no windows,and no floors?",
+    "choices": [
+        "mushroom", " bathroom", " bedroom"
+    ],
+    "correctAnswer": 0
+
+}, {
+    "question": "谁天天去看病？",
+    "choices": [
+        " 医生", "病人", " 护士"
+    ],
+    "correctAnswer": 0
+
+}, {
+    "question": "999-520=",
+    "choices": [
+        "234", " 539", "479"
+    ],
+    "correctAnswer": 2
+
+}, {
+    "question": " 请你判断，哪一件东西最黑？",
+    "choices": [
+        "在封闭不透光的盒子上挖一个小洞", "黑色的丝绒", "月光下的墨滴"
+    ],
+    "correctAnswer": 0
+}, {
+    "question": "世界上唯一的四个膝盖的动物是？",
+    "choices": [
+        "大象", " 豹子", "狮子", "熊猫"
+    ],
+    "correctAnswer": 0
+
+}]

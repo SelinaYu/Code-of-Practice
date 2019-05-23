@@ -1,0 +1,102 @@
+body{
+  background: black;
+  color: white;  
+}
+.stage{
+    transform-style:preserve-3d;
+    perspective:1000px;
+    width: 800px;
+    height: 400px;
+     margin:0 auto;
+  }
+  .control{
+    position: relative;
+    transform-style:preserve-3d;
+    animation:rotate 40s linear infinite;
+  }
+  .imgWrap{
+    transform-style:preserve-3d;
+    position:absolute;
+    width:400px;
+    height:400px;
+  }
+  .img{
+    display:inline-block;
+    position:absolute;
+    top: 0;
+    left: 0;
+    transform-style: preserve-3d;
+    background:hsla( 70, 50%,50%, 0.1);
+    border: 2px solid #d7ea64;
+    box-shadow: 0px 0px 50px #c5dc3a;
+    width:400px;
+    height:400px;
+  }
+
+  .img1{
+    transform: rotateY(90deg) translateZ(200px);
+  
+  }
+  .img2{
+    transform: rotateY(180deg) translateZ(200px);
+  }
+  .img3{
+    transform: rotateY(270deg) translateZ(200px);
+  }
+  .img4{
+    transform: rotateY(360deg) translateZ(200px);
+  }
+  
+  .ctrContainer {
+    position: relative;
+    z-index: 999999;
+  }
+  .ctrContainer label{
+    display: inline-block;
+    width: 200px;
+    text-align: center;
+  }
+
+input[type=range]:focus {
+  outline: none;
+} 
+/*横条样式*/
+input[type=range] {
+  -webkit-appearance: none;/*清除系统默认样式*/
+  width: 300px;
+  background: -webkit-linear-gradient(#61bd12, #61bd12) no-repeat, #ddd;/*设置左边颜色为#61bd12，右边颜色为#ddd*/
+  height: 10px;/*横条的高度*/
+  background-size: 10% 100%;
+  border-radius: 5px;
+}
+/*拖动块的样式*/
+input[type=range]::-webkit-slider-thumb {
+  -webkit-appearance: none;/*清除系统默认样式*/
+  height: 26px;/*拖动块高度*/
+  width: 26px;/*拖动块宽度*/
+  background: #fff;/*拖动块背景*/
+  border-radius: 50%; /*外观设置为圆形*/
+  border: solid 1px #ccc; /*设置边框*/
+}
+.contr {
+  height: 35px;
+  line-height: 35px;
+}
+button#btn {
+  height: 35px;
+  width: 200px;
+  background: #e8e684;
+  border-radius: 30px;
+  margin: 20px 200px;
+}
+  @keyframes rotate{
+      0%{
+          transform:  rotateY(0deg) rotateZ(10deg);
+      }
+      50%{
+          transform: rotateY(-360deg) rotateZ(-10deg);
+      }
+      100%{
+          transform:  rotateY(-720deg) rotateZ(10deg);
+      }
+  }
