@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import './style.less';
+import './style.css';
 class DragScaleView extends Component {
   constructor(props) {
     super(props);

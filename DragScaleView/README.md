@@ -1,6 +1,12 @@
-### Usage
+### Installation && Usage
 
 ```
+## install
+
+npm install
+npm run start
+
+## usage
 
 import DragScaleView from './DragScaleView';
 

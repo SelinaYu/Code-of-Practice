@@ -1,0 +1,51 @@
+.dsView{
+  z-index: 9999;
+  position: fixed;
+  top: 100px;
+  left:calc(50vw - 250px);
+  background: #f5f5f5;
+  padding: 15px;
+  box-shadow: 2px 2px 10px 10px #e8e8e8;
+  max-width: 100vw;
+  max-height: 100vh;
+  overflow: hidden;
+}
+.dsView.actived {
+  display: inline-block;
+}
+.dsView.hide{
+  display: none;
+}
+
+.dsView-scale{
+  display: inline-block;
+  position: absolute;
+}
+#cursor-north-west,
+#cursor-south-west,
+#cursor-north-east,
+#cursor-south-east{
+  width: 10px;
+  height: 10px;
+}
+#cursor-north,
+#cursor-south{
+  left:10px;
+  width: calc(100% - 20px);
+  height: 10px;
+}
+#cursor-west,
+#cursor-east{
+  width:10px;
+  top: 10px;
+  height: calc(100% - 20px)
+}
+#cursor-north { cursor: n-resize;  top: 0px; }
+#cursor-south { cursor: s-resize;  bottom: 0px; }
+#cursor-west { cursor: w-resize; left: 0px;  }
+#cursor-east { cursor: e-resize; right: 0px;  }
+#cursor-north-west { cursor: nw-resize; left: 0px; top: 0px; }
+#cursor-north-east { cursor: ne-resize; right: 0px; top: 0px; }
+#cursor-south-west { cursor: sw-resize; left: 0px; bottom: 0px; }
+#cursor-south-east { cursor: se-resize; right: 0px; bottom: 0px; }
+

@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
 import DragScaleView from './DragScaleView';
-import './style.less';
 
 class App extends Component {
   constructor() {
