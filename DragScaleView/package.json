@@ -10,12 +10,9 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "predeploy": "npm run build",
-    "deploy": "gh-pages -d build"
+    "eject": "react-scripts eject"
   },
   "devDependencies": {
-    "gh-pages": "^2.0.1",
     "react-scripts": "latest"
   },
   "browserslist": {
@@ -29,6 +26,5 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
-  },
-  "homepage": "https://selinayu.cc/Code-of-Practice/dragscaleview"
+  }
 }

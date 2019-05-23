@@ -3,19 +3,24 @@ import './style.less';
 class DragScaleView extends Component {
   constructor(props) {
     super(props);
+    this.initStyle = {
+      width: '100px',
+      height: '100px',
+      minWidth: '50px',
+      minHeight: '50px'
+    };      
     this.state = {
-      dsStyle: props.dsStyle,
+      dsStyle: props.dsStyle || this.initStyle,
+      visible: props.visible || true,
       offsetX: 0,
       offsetY: 0
-    };
+    }
   }
 
   componentDidMount = () => {
     let { dsStyle } = this.state;
-    if (dsStyle && dsStyle.width) {
-      dsStyle = {  left: `calc(50vw - ${dsStyle.width}/2)`,...dsStyle };
-      this.setState({ dsStyle });
-    } 
+    dsStyle = {  left: `calc(50vw - ${dsStyle.width}/2)`,...dsStyle }
+    this.setState({ dsStyle });
   }
   handleMouseUp = () => {
     document.onmouseup = () => {
@@ -23,6 +28,14 @@ class DragScaleView extends Component {
       document.onmouseup = null;
     };
     return false;
+  }
+  debounce = (func,seconds) => {
+    // 防抖动
+    let timer = null;
+    return function() {
+      clearTimeout(timer);
+      setTimeout(func,seconds)
+    }
   }
   handleScale = (e) => {
     let initY = e.clientY;
@@ -207,11 +220,12 @@ class DragScaleView extends Component {
         break;
 
     }
-    document.onmousemove = e => handleEvent(e);
+    document.onmousemove = e => this.debounce(handleEvent(e),8000);
     this.handleMouseUp();
   }
   render() {
-    const { content, visible } = this.props;
+    const { content } = this.props;
+    const { visible } = this.state;
     return (
       <div
         className={visible ? 'dsView actived' : 'dsView hide'}

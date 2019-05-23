@@ -9,12 +9,12 @@ class App extends Component {
     this.state = {
       visible: true
     };
-    this.dsStyle = {
-      width: '300px',
-      height: '300px',
-      minWidth: '30px',
-      minHeight: '30px'
-    };
+    // this.dsStyle = {
+    //   width: '300px',
+    //   height: '300px',
+    //   minWidth: '30px',
+    //   minHeight: '30px'
+    // };
     
   }
 
@@ -22,8 +22,9 @@ class App extends Component {
     return (
       <div>
         <DragScaleView
-          visible={this.state.visible}
-          dsStyle={this.dsStyle}
+          // visible={this.state.visible}
+          // dsStyle={this.dsStyle}
+          // content={<Comp>}
         />
       </div>
     );
